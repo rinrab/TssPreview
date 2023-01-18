@@ -1,0 +1,146 @@
+﻿<Window x:Class="TssPreview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TssPreview"
+        mc:Ignorable="d"
+        Title="TSS Preview"
+        Height="450"
+        Width="800"
+        Loaded="Window_Loaded">
+  <Grid Margin="6">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"
+                        x:Name="windWidth"></ColumnDefinition>
+      <ColumnDefinition Width="2*"
+                        x:Name="mapWidth"></ColumnDefinition>
+      <ColumnDefinition Width="*" MinWidth="200" MaxWidth="300"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="*"
+                     x:Name="mapHeight"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+    </Grid.RowDefinitions>
+
+    <Grid Grid.ColumnSpan="3">
+      <Menu FontSize="14">
+        <MenuItem Header="Load"
+                  Click="MenuItem_Click"></MenuItem>
+        <MenuItem Header="Play Game"
+                  Click="OpenTSSWeb"></MenuItem>
+      </Menu>
+    </Grid>
+
+    <Canvas x:Name="wind"
+            Grid.Row="1"
+            Grid.RowSpan="1">
+      <Canvas.Clip>
+        <RectangleGeometry Rect="0 0 100 100" x:Name="cropWind"></RectangleGeometry>
+      </Canvas.Clip>
+    </Canvas>
+
+    <Grid Grid.Column="1"
+          Grid.Row="1"
+          x:Name="GameContainer"
+          SizeChanged="Canvas_SizeChanged">
+      <Canvas Background="#ebeaff"
+              SizeChanged="Canvas_SizeChanged"
+              Height="300"
+              x:Name="canvas">
+      </Canvas>
+
+      <Canvas>
+        <Path Data="M 1 14 L 6 22 L 11 14 M 4 2 V 15 M 8 2 V 15"
+              Stroke="Black"
+              StrokeThickness="6"
+              StrokeLineJoin="Round"
+              StrokeStartLineCap="Round"
+              StrokeEndLineCap="Round"
+              Height="96"
+              Canvas.Left="16"
+              Canvas.Top="16"
+              Stretch="Fill"
+              RenderTransformOrigin="0.5, 0.5"
+              Width="48">
+          <Path.RenderTransform>
+            <RotateTransform x:Name="windRotate" />
+          </Path.RenderTransform>
+        </Path>
+      </Canvas>
+    </Grid>
+    <Grid Grid.Column="2"
+          Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="*"></RowDefinition>
+      </Grid.RowDefinitions>
+      <TextBlock Margin="10,0,0,0"
+                 Grid.Row="0">Boat size</TextBlock>
+      <Slider Grid.Row="1"
+              Minimum="0.2"
+              Maximum="0.5"
+              Value="0.3"
+              LargeChange="0.03"
+              x:Name="BoatScaleSlider"></Slider>
+      <ListView Grid.Row="2"
+                x:Name="players"
+                Background="Transparent"
+                BorderThickness="0">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+              <Rectangle Grid.Column="0"
+                         Width="16"
+                         RadiusX="2"
+                         RadiusY="2"
+                         Fill="{Binding Color}"
+                         Height="16"></Rectangle>
+              <TextBlock Grid.Column="1" Text="{Binding Name}"></TextBlock>
+            </Grid>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </Grid>
+    <Grid Grid.Column="0"
+          Grid.ColumnSpan="3"
+          Grid.Row="2"
+          Margin="0,2,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"></RowDefinition>
+      </Grid.RowDefinitions>
+      <Button Click="Play_Click">
+        <Grid>
+          <Path Fill="Black"
+                Name="playIcon"
+                Data="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+                Margin="0,0,4,2" />
+          <Path Fill="Black"
+                Visibility="Collapsed"
+                Name="pauseIcon"
+                Data="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"
+                Margin="0,0,4,2" />
+        </Grid>
+      </Button>
+      <Slider Grid.Column="1"
+              Grid.Row="0"
+              x:Name="slider"
+              Minimum="0"
+              Thumb.DragCompleted="slider_DragCompleted"
+              ValueChanged="Slider_ValueChanged"
+              SmallChange="1"
+              Margin="2,0,0,0">
+      </Slider>
+    </Grid>
+  </Grid>
+</Window>
