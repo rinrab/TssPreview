@@ -46,8 +46,10 @@ namespace TssPreview
 
         public static Game Load(string path)
         {
-            using FileStream file = File.OpenRead(path);
-            return JsonSerializer.Deserialize<Game>(file);
+            using (FileStream file = File.OpenRead(path))
+            {
+                return JsonSerializer.Deserialize<Game>(file);
+            }
         }
     }
 }

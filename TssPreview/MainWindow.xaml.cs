@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace TssPreview
             {
                 using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Classes\Applications\TssPreview.exe\shell\open\command"))
                 {
-                    key.SetValue(null, string.Format("{0} \"%1\"", Environment.ProcessPath));
+                    key.SetValue(null, string.Format("{0} \"%1\"", Assembly.GetExecutingAssembly().Location));
                 }
             }
             catch (Exception ex)
@@ -108,7 +109,7 @@ namespace TssPreview
             BoatScaleSlider.ValueChanged += BoatScaleSlider_ValueChanged;
         }
 
-        private void Timer_Tick(object? sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             if (slider.Value < slider.Maximum)
             {

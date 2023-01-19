@@ -79,7 +79,7 @@ namespace TssPreview
     public class Story
     {
         [JsonPropertyName("points")]
-        public Point[]? Points { get; set; }
+        public Point[] Points { get; set; }
 
         public Story() { }
     }
