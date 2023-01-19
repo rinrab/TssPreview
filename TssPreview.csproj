@@ -12,4 +12,8 @@
     <Content Include="favicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="publish\" />
+  </ItemGroup>
+
 </Project>
