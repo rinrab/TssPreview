@@ -55,15 +55,19 @@ namespace TssPreview
             };
             foreach (string dir in dirs)
             {
-                if (Directory.Exists(dir))
+                try
                 {
-                    files = Directory.GetFiles(dir, "*.*", SearchOption.TopDirectoryOnly)
-                        .Where(s => s.EndsWith(".tss") || s.EndsWith(".tssrace")).ToArray();
+                    if (Directory.Exists(dir))
+                    {
+                        files = Directory.GetFiles(dir, "*.*", SearchOption.TopDirectoryOnly)
+                            .Where(s => s.EndsWith(".tss") || s.EndsWith(".tssrace")).ToArray();
+                    }
+                    foreach (string file in files)
+                    {
+                        fileInfos.Add(new FileInfo(file));
+                    }
                 }
-                foreach (string file in files)
-                {
-                    fileInfos.Add(new FileInfo(file));
-                }
+                catch (Exception) { }
             }
 
             fileInfos.Sort((a, b) => b.CreationTime.CompareTo(a.CreationTime));
