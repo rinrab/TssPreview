@@ -22,18 +22,14 @@ namespace TssPreview
                     key.SetValue(null, string.Format("{0} \"%1\"", Assembly.GetExecutingAssembly().Location));
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) { }
             try
             {
                 using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Classes\.tss\OpenWithList\TssPreview.exe"))
                 {
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) { }
 
             var demoDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"TssPreview\Demo");
             if (!Directory.Exists(demoDir))
