@@ -59,5 +59,14 @@ namespace TssPreview.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;magic&quot;:&quot;Tactical Sailing Simulator by Rinrab&quot;,&quot;version&quot;:1,&quot;marks&quot;:[{&quot;x&quot;:12.5,&quot;y&quot;:28,&quot;type&quot;:0},{&quot;x&quot;:27.5,&quot;y&quot;:28,&quot;type&quot;:1},{&quot;x&quot;:20,&quot;y&quot;:2,&quot;type&quot;:2}],&quot;width&quot;:40,&quot;height&quot;:30,&quot;wind&quot;:[0,10,0,0,0,5,0,5,5,0,5,0,5,5,0,-10,-10,-15,0,10,-5,-5,-15,-15,-5,-15,-15,-20,-15,-20,-20,-15,-20,-20,-20,-20,-15,-10,-10,-20,-20,-20,-15,-20,-20,-20,-15,-5,-5,-5],&quot;turncount&quot;:34,&quot;isStart&quot;:false,&quot;name&quot;:&quot;Random&quot;,&quot;players&quot;:[{&quot;x&quot;:21.37826015445413,&quot;y&quot;:2.642693264951851,&quot;rotation&quot;:-64.99999999999999,&quot;tack&quot;:false,&quot;color&quot;:&quot;red&quot;,&quot;name&quot;:&quot;Pl [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Demo1 {
+            get {
+                return ResourceManager.GetString("Demo1", resourceCulture);
+            }
+        }
     }
 }

@@ -35,22 +35,37 @@ namespace TssPreview
             {
             }
 
+            var demoDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"TssPreview\Demo");
+            if (!Directory.Exists(demoDir))
+            {
+                Directory.CreateDirectory(demoDir);
+                File.WriteAllText(Path.Combine(demoDir, "Demo1.tss"), Properties.Resources.Demo1);
+                File.SetCreationTime(Path.Combine(demoDir, "Demo1.tss"), new DateTime(1900, 1, 1));
+            }
+
             InitializeComponent();
 
             string[] files = { };
             List<FileInfo> fileInfos = new List<FileInfo>();
-            
-            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            if (Directory.Exists(dir))
+
+            string[] dirs = new string[] {
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads"),
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                demoDir
+            };
+            foreach (string dir in dirs)
             {
-                files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
-                    .Where(s => s.EndsWith(".tss") || s.EndsWith(".tssrace")).ToArray();
+                if (Directory.Exists(dir))
+                {
+                    files = Directory.GetFiles(dir, "*.*", SearchOption.TopDirectoryOnly)
+                        .Where(s => s.EndsWith(".tss") || s.EndsWith(".tssrace")).ToArray();
+                }
+                foreach (string file in files)
+                {
+                    fileInfos.Add(new FileInfo(file));
+                }
             }
-            foreach (string file in files)
-            {
-                fileInfos.Add(new FileInfo(file));
-            }
-            
+
             fileInfos.Sort((a, b) => b.CreationTime.CompareTo(a.CreationTime));
 
             fileList.ItemsSource = fileInfos;
