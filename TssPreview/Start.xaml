@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:TssPreview"
         mc:Ignorable="d"
         Title="Start"
+        MinWidth="350"
+        MinHeight="200"
         Height="450"
         Width="800">
   <Grid>
