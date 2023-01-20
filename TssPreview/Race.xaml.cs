@@ -22,7 +22,7 @@ namespace TssPreview
 
         bool IsRaceOpened = false;
 
-        DispatcherTimer timer;
+        readonly DispatcherTimer timer;
 
         public static readonly string version = "v0.1.0";
 
