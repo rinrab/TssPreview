@@ -131,7 +131,7 @@ namespace TssPreview
             {
                 wind.Clip = new RectangleGeometry(new Rect(-1, -1, wind.ActualWidth + 2, wind.ActualHeight + 0.5));
 
-                int len = (int)Math.Max((GameState.Height - 4) * Math.Sin(Math.PI / 4), slider.Value + 10);
+                int len = GameState.TurnCount + 5;
                 var data = string.Format("M {2} {1} L {0}, {1}", wind.ActualWidth, wind.ActualHeight + 50, wind.ActualWidth / 2);
                 var gridY = wind.ActualHeight / len;
                 var newElem = new Path();
