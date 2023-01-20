@@ -39,21 +39,18 @@ namespace TssPreview
 
             string[] files = { };
             List<FileInfo> fileInfos = new List<FileInfo>();
+            
             var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
             if (Directory.Exists(dir))
             {
                 files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
                     .Where(s => s.EndsWith(".tss") || s.EndsWith(".tssrace")).ToArray();
             }
-            
-            for (int i = 0; i < files.Length; i++)
+            foreach (string file in files)
             {
-                fileInfos.Add(new FileInfo(files[i]));
-
-                files[i] = Path.GetFileName(files[i]);
+                fileInfos.Add(new FileInfo(file));
             }
-
+            
             fileInfos.Sort((a, b) => b.CreationTime.CompareTo(a.CreationTime));
 
             fileList.ItemsSource = fileInfos;
