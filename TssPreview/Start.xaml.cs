@@ -93,7 +93,7 @@ namespace TssPreview
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.FileName = "Game";
             dialog.DefaultExt = "(*.tss, *.tssgame)";
-            dialog.Filter = "Image files (*.tss, *.tssrace)|*.tss;*.tssrace";
+            dialog.Filter = "TSS Race (*.tss, *.tssrace)|*.tss;*.tssrace";
 
             bool? result = dialog.ShowDialog();
 
