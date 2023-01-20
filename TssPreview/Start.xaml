@@ -1,0 +1,45 @@
+﻿<Window x:Class="TssPreview.Start"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TssPreview"
+        mc:Ignorable="d"
+        Title="Start"
+        Height="450"
+        Width="800">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+      <ColumnDefinition Width="300"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1*"></RowDefinition>
+      <RowDefinition Height="5*"></RowDefinition>
+      <RowDefinition Height="1*"></RowDefinition>
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Column="1" Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"></RowDefinition>
+        <RowDefinition Height="2"></RowDefinition>
+        <RowDefinition Height="*"></RowDefinition>
+      </Grid.RowDefinitions>
+
+      <Button Grid.Row="0" FontSize="15"
+              Click="Button_Click">Load Race</Button>
+      <ListView Grid.Row="2"
+                Name="fileList"
+                MouseDoubleClick="fileList_MouseDoubleClick">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <TextBlock Text="{Binding Name}"></TextBlock>
+            </Grid>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </Grid>
+  </Grid>
+</Window>

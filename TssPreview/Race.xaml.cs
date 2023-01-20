@@ -26,7 +26,7 @@ namespace TssPreview
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Race : Window
     {
         public Game GameState;
 
@@ -36,7 +36,7 @@ namespace TssPreview
 
         DispatcherTimer timer;
 
-        string version = "v0.1.0";
+        public static readonly string version = "v0.1.0";
 
         bool isPlay = false;
 
@@ -48,64 +48,22 @@ namespace TssPreview
             }
         }
 
-        public MainWindow()
+        public Race(string path)
         {
-            try
-            {
-                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Classes\Applications\TssPreview.exe\shell\open\command"))
-                {
-                    key.SetValue(null, string.Format("{0} \"%1\"", Assembly.GetExecutingAssembly().Location));
-                }
-            }
-            catch (Exception)
-            {
-            }
-            try
-            {
-                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\Classes\.tss\OpenWithList\TssPreview.exe"))
-                {
-                }
-            }
-            catch (Exception)
-            {
-            }
-
             InitializeComponent();
 
-            string[] args = Environment.GetCommandLineArgs();
-            if (args != null)
-            {
-                if (args.Length >= 2)
-                {
-                    var str = args[1];
-                    for (int i = 2; i < args.Length; i++)
-                    {
-                        str += " " + args[i];
-                    }
-                    if (File.Exists(str))
-                    {
-                        Load(str);
-                    }
-                    else
-                    {
-                        Title = string.Format("TSS Preview {0}", version);
-                    }
-                }
-                else
-                {
-                    Title = string.Format("TSS Preview {0}", version);
-                }
-            }
-            else
-            {
-                IsRaceOpened = false;
-                Title = string.Format("TSS Preview {0}", version);
-            }
+            Load(path);
+            UpdateTitle(path);
 
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
 
             BoatScaleSlider.ValueChanged += BoatScaleSlider_ValueChanged;
+        }
+
+        private void UpdateTitle(string path)
+        {
+            Title = string.Format("\"{1}\" TSS Preview {0}", version, System.IO.Path.GetFileName(path));
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -303,7 +261,7 @@ namespace TssPreview
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.FileName = "Game";
             dialog.DefaultExt = ".tss";
-            dialog.Filter = "TSS save|*.tss";
+            dialog.Filter = "Image files (*.tss, *.tssrace)|*.tss;*.tssrace";
 
             // Show open file dialog box
             bool? result = dialog.ShowDialog();
