@@ -98,7 +98,6 @@ namespace TssPreview
                 IsRaceOpened = true;
                 slider.Value = 0;
                 Title = string.Format("TSS Preview {0}: {1}", version, System.IO.Path.GetFileName(path));
-                Update();
             }
             catch (Exception ex)
             {
