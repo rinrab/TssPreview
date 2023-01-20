@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 
@@ -42,7 +43,8 @@ namespace TssPreview
 
             if (Directory.Exists(dir))
             {
-                files = Directory.GetFiles(dir, "*.tss");
+                files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
+                    .Where(s => s.EndsWith(".tss") || s.EndsWith(".tssrace")).ToArray();
             }
             
             for (int i = 0; i < files.Length; i++)
