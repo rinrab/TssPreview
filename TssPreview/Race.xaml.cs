@@ -26,6 +26,8 @@ namespace TssPreview
 
         public static readonly string version = "v0.1.0";
 
+        private DateTime oldTime;
+
         bool isPlay = false;
 
         float BoatSize
@@ -44,6 +46,7 @@ namespace TssPreview
             UpdateTitle(path);
 
             timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(100);
             timer.Tick += Timer_Tick;
 
             BoatScaleSlider.ValueChanged += BoatScaleSlider_ValueChanged;
@@ -58,8 +61,7 @@ namespace TssPreview
         {
             if (slider.Value < slider.Maximum)
             {
-                slider.Value += 0.05;
-                Update();
+                slider.Value += 0.0000005 * (DateTime.Now.Ticks - oldTime.Ticks);
             }
             else
             {
@@ -67,6 +69,8 @@ namespace TssPreview
                 UpdateTimerData();
                 timer.Stop();
             }
+
+            oldTime = DateTime.Now;
         }
 
         private void Resize()
@@ -278,6 +282,7 @@ namespace TssPreview
             if (isPlay)
             {
                 timer.Start();
+                oldTime = DateTime.Now;
             }
             else
             {
