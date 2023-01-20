@@ -181,14 +181,7 @@ namespace TssPreview
         
         private void UpdatePlayers()
         {
-            List<Boat> newItems = new List<Boat>();
-
-            foreach(var e in GameState.Boats)
-            {
-                newItems.Add(e);
-            }
-
-            players.ItemsSource = newItems;
+            players.ItemsSource = GameState.Boats;
         }
 
         private UIElement DrawBoat(Boat boat, float turnNow)
