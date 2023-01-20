@@ -31,14 +31,6 @@ namespace TssPreview
             }
             catch (Exception) { }
 
-            var demoDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"TssPreview\Demo");
-            if (!Directory.Exists(demoDir))
-            {
-                Directory.CreateDirectory(demoDir);
-                File.WriteAllText(Path.Combine(demoDir, "Demo1.tss"), Properties.Resources.Demo1);
-                File.SetCreationTime(Path.Combine(demoDir, "Demo1.tss"), new DateTime(1900, 1, 1));
-            }
-
             InitializeComponent();
 
             string[] files = { };
@@ -47,7 +39,6 @@ namespace TssPreview
             string[] dirs = new string[] {
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads"),
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                demoDir
             };
             foreach (string dir in dirs)
             {
