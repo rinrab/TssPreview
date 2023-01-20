@@ -27,7 +27,6 @@ namespace TssPreview
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        //[JsonPropertyName("turncount")]
         [JsonIgnore]
         public int TurnCount {
             get
