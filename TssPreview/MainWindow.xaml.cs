@@ -58,7 +58,7 @@ namespace TssPreview
                     key.SetValue(null, string.Format("{0} \"%1\"", Assembly.GetExecutingAssembly().Location));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             try
@@ -67,7 +67,7 @@ namespace TssPreview
                 {
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
