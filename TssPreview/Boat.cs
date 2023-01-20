@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
 using System.Windows.Media;
 
 namespace TssPreview
 {
+    [DataContract]
     public class Boat
     {
-        [JsonPropertyName("turns")]
+        [DataMember(Name = "turns")]
         public Story[] turns { get; set; }
         public Story[] Turns
         {
@@ -31,19 +32,19 @@ namespace TssPreview
             }
         }
 
-        [JsonPropertyName("x")]
+        [DataMember(Name = "x")]
         public float X { get; set; }
 
-        [JsonPropertyName("y")]
+        [DataMember(Name = "y")]
         public float Y { get; set; }
 
-        [JsonPropertyName("name")]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("tack")]
+        [DataMember(Name = "tack")]
         public bool tack { get; set; }
 
-        [JsonPropertyName("color")]
+        [DataMember(Name = "color")]
         public string Color { get; set; }
 
         public Color GetColor()
@@ -76,20 +77,22 @@ namespace TssPreview
         public Boat() { }
     }
 
+    [DataContract]
     public class Story
     {
-        [JsonPropertyName("points")]
+        [DataMember(Name = "points")]
         public Point[] Points { get; set; }
 
         public Story() { }
     }
 
+    [DataContract]
     public class Point
     {
-        [JsonPropertyName("x")]
+        [DataMember(Name = "x")]
         public float X { get; set; }
 
-        [JsonPropertyName("y")]
+        [DataMember(Name = "y")]
         public float Y { get; set; }
 
         public Point(float x, float y)

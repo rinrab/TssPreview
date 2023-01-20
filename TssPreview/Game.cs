@@ -1,41 +1,41 @@
 ﻿using System.IO;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace TssPreview
 {
+    [DataContract]
     public class Game
     {
-        [JsonPropertyName("magic")]
+        [DataMember(Name = "magic")]
         public string Magic { get; set; }
 
-        [JsonPropertyName("version")]
+        [DataMember(Name = "version")]
         public int Version { get; set; }
 
-        [JsonPropertyName("players")]
+        [DataMember(Name = "players")]
         public Boat[] Boats { get; set; }
 
-        [JsonPropertyName("width")]
+        [DataMember(Name = "width")]
         public int Width { get; set; }
-        [JsonPropertyName("height")]
+        [DataMember(Name = "height")]
         public int Height { get; set; }
 
-        [JsonPropertyName("wind")]
+        [DataMember(Name = "wind")]
         public int[] Wind { get; set; }
-        
-        [JsonPropertyName("name")]
+
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        [JsonIgnore]
-        public int TurnCount {
+        public int TurnCount
+        {
             get
             {
                 return Boats[0].Turns.Length;
             }
         }
 
-        [JsonPropertyName("marks")]
+        [DataMember(Name = "marks")]
         public Mark[] Marks { get; set; }
 
         public Game()
@@ -47,7 +47,8 @@ namespace TssPreview
         {
             using (FileStream file = File.OpenRead(path))
             {
-                return JsonSerializer.Deserialize<Game>(file);
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Game));
+                return serializer.ReadObject(file) as Game;
             }
         }
     }

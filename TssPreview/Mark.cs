@@ -1,13 +1,15 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Xml.Linq;
 
 namespace TssPreview
 {
+    [DataContract]
     public class Mark
     {
-        [JsonPropertyName("x")]
+        [DataMember(Name = "x")]
         public float X { get; set; }
 
-        [JsonPropertyName("y")]
+        [DataMember(Name = "y")]
         public float Y { get; set; }
 
         public Mark(int x, int y)
