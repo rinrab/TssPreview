@@ -29,7 +29,7 @@ namespace TssPreview
 
         //[JsonPropertyName("turncount")]
         [JsonIgnore]
-        public int TurnCount { 
+        public int TurnCount {
             get
             {
                 return Boats[0].Turns.Length;
