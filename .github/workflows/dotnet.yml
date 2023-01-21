@@ -1,4 +1,4 @@
-name: EZRep Build
+name: Build
 
 on:
   push:
@@ -13,9 +13,6 @@ jobs:
     
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
-
-    - name: Navigate to Workspace
-      run: cd $GITHUB_WORKSPACE
 
     - name: Create Build Directory
       run: mkdir _build
