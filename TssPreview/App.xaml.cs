@@ -10,5 +10,6 @@ namespace TssPreview
 {
     public partial class App : Application
     {
+        public static readonly string Version = "V0.1.1";
     }
 }

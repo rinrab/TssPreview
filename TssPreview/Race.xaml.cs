@@ -24,8 +24,6 @@ namespace TssPreview
 
         readonly DispatcherTimer timer;
 
-        public static readonly string version = "V0.1.1";
-
         private DateTime oldTime;
 
         bool isPlay = false;
@@ -54,7 +52,7 @@ namespace TssPreview
 
         private void UpdateTitle(string path)
         {
-            Title = string.Format("\"{1}\" TSS Preview {0}", version, System.IO.Path.GetFileName(path));
+            Title = string.Format("\"{1}\" TSS Preview {0}", App.Version, System.IO.Path.GetFileName(path));
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -97,7 +95,7 @@ namespace TssPreview
                 GameState = Game.Load(path);
                 IsRaceOpened = true;
                 slider.Value = 0;
-                Title = string.Format("TSS Preview {0}: {1}", version, System.IO.Path.GetFileName(path));
+                Title = string.Format("TSS Preview {0}: {1}", App.Version, System.IO.Path.GetFileName(path));
             }
             catch (Exception ex)
             {
