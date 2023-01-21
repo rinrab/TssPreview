@@ -95,7 +95,6 @@ namespace TssPreview
                 GameState = Game.Load(path);
                 IsRaceOpened = true;
                 slider.Value = 0;
-                Title = string.Format("TSS Preview {0}: {1}", App.Version, System.IO.Path.GetFileName(path));
             }
             catch (Exception ex)
             {
