@@ -129,11 +129,11 @@ namespace TssPreview
                 wind.Clip = new RectangleGeometry(new Rect(-1, -1, wind.ActualWidth + 2, wind.ActualHeight + 0.5));
 
                 int len = GameState.TurnCount + 5;
-                var data = string.Format("M {2} {1} L {0}, {1}", wind.ActualWidth, wind.ActualHeight + 50, wind.ActualWidth / 2);
-                var gridY = wind.ActualHeight / len;
-                var newElem = new Path();
-                var width = wind.ActualWidth;
-                var scaleX = width / 200;
+                string data = string.Format("M {2} {1} L {0}, {1}", wind.ActualWidth, wind.ActualHeight + 50, wind.ActualWidth / 2);
+                double gridY = wind.ActualHeight / len;
+                Path newElem = new Path();
+                double width = wind.ActualWidth;
+                double scaleX = width / 200;
                 wind.Children.Add(newElem);
                 for (int i = 0; i < len; i++)
                 {
@@ -141,7 +141,7 @@ namespace TssPreview
                     data += string.Format("L {0}, {1} ", (GameState.Wind[(i + 1) % GameState.Wind.Length] * 5 + 100) * scaleX, wind.ActualHeight - i * gridY);
                     if (i == (int)slider.Value + 1)
                     {
-                        var newRect = new Rectangle();
+                        Rectangle newRect = new Rectangle();
                         newRect.Width = wind.ActualWidth;
                         newRect.Height = gridY;
                         newRect.Margin = new Thickness(0, wind.ActualHeight - i * gridY, 0, 0);
@@ -183,7 +183,7 @@ namespace TssPreview
 
         private UIElement DrawBoat(Boat boat, float turnNow)
         {
-            var size = BoatSize;
+            float size = BoatSize;
             Ellipse rv = new Ellipse();
             rv.Width = size;
             rv.Height = size;
@@ -215,12 +215,12 @@ namespace TssPreview
         public UIElement DrawTrack(Boat boat)
         {
             Path rv = new Path();
-            var data = "M ";
+            string data = "M ";
             data += boat.Turns[0].Points[0].X * GridSize + "," + boat.Turns[0].Points[0].Y * GridSize + " ";
 
-            foreach (var turn in boat.Turns)
+            foreach (Story turn in boat.Turns)
             {
-                foreach (var pt in turn.Points)
+                foreach (Point pt in turn.Points)
                 {
                     data += "L " + pt.X * GridSize + " " + pt.Y * GridSize + " ";
                 }

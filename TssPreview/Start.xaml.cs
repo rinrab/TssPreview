@@ -67,14 +67,14 @@ namespace TssPreview
             {
                 if (args.Length >= 2)
                 {
-                    var str = args[1];
+                    string str = args[1];
                     for (int i = 2; i < args.Length; i++)
                     {
                         str += " " + args[i];
                     }
                     if (File.Exists(str))
                     {
-                        var newWin = new Race(str);
+                        Race newWin = new Race(str);
                         newWin.Show();
                         Close();
                     }
@@ -85,10 +85,10 @@ namespace TssPreview
 
         private void fileList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var src = (FileInfo)fileList.SelectedValue;
+            FileInfo src = (FileInfo)fileList.SelectedValue;
             if (src.Extension == ".tss" || src.Extension == ".tssrace")
             {
-                var newWin = new Race(src.FullName);
+                Race newWin = new Race(src.FullName);
                 newWin.Show();
                 Close();
             }
@@ -105,7 +105,7 @@ namespace TssPreview
 
             if (result == true)
             {
-                var newWin = new Race(dialog.FileName);
+                Race newWin = new Race(dialog.FileName);
                 newWin.Show();
                 Close();
             }
