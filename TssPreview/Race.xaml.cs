@@ -24,7 +24,7 @@ namespace TssPreview
 
         readonly DispatcherTimer timer;
 
-        public static readonly string version = "v0.1.0";
+        public static readonly string version = "V0.1.1";
 
         private DateTime oldTime;
 
