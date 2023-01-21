@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TssPreview"
         mc:Ignorable="d"
-        Title="Start"
         MinWidth="350"
         MinHeight="200"
         Height="450"

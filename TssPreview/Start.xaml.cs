@@ -32,6 +32,7 @@ namespace TssPreview
             catch (Exception) { }
 
             InitializeComponent();
+            Title = string.Format("TSS Preview {0}", Race.version);
 
             string[] files = { };
             List<FileInfo> fileInfos = new List<FileInfo>();
