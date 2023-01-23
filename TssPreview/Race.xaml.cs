@@ -196,7 +196,8 @@ namespace TssPreview
                 pt2 = boat.Turns[(int)turnNow + 1].Points[0];
             }
 
-            Point pt = new Point(pt1.X + (pt2.X - pt1.X) * (turnNow - (int)turnNow), pt1.Y + (pt2.Y - pt1.Y) * (turnNow - (int)turnNow));
+            Point pt = new Point(pt1.X + (pt2.X - pt1.X) * (turnNow - (int)turnNow),
+                                 pt1.Y + (pt2.Y - pt1.Y) * (turnNow - (int)turnNow));
 
             rv.Margin = new Thickness(pt.X * GridSize - size / 2, pt.Y * GridSize - size / 2, 0, 0);
             return rv;
