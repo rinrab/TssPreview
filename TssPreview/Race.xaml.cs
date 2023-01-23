@@ -314,6 +314,14 @@ namespace TssPreview
             {
                 Close();
             }
+            else if (e.Key == Key.Left) 
+            {
+                slider.Value = (int)slider.Value - 1;
+            }
+            else if (e.Key == Key.Right) 
+            {
+                slider.Value = (int)slider.Value + 1;
+            }
         }
     }
 }
